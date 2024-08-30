@@ -18,11 +18,13 @@ public class SurroundingContext {
         try {
             Scanner sc = new Scanner(file);
 
-            // 3 words before and after word
-            String regex = "((?:\\S+\\s+){0,3}\\b" + word + "\\b\\s*(?:\\S+\\b\\s*){0,3})";
+            //has a problem starting at the beginning of a sentence or if there is a
+            // , or restarting after the end of the sentence
+            String regex = "((?:\\S+\\s+){0,3}" + word + "\\S*\\s*(?:\\S+\\s*){0,3})";
+
 
             Pattern pattern = Pattern.compile(regex);
-            
+
             result += sc.findInLine(pattern);
 
 

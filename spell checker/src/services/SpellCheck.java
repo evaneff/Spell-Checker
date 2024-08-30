@@ -2,6 +2,7 @@ package services;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.List;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -54,7 +55,6 @@ public class SpellCheck {
                         if (!dict.hasNext()) {
 
                             // is it a proper noun?? or just misspelled capitalized word?
-                            // maybe if there are suggestions that are similar, just misspelled?
 
                             //contractions??
 
@@ -63,12 +63,15 @@ public class SpellCheck {
                             String contextResult = context.findContext(fileToCheck, wordToCheck);
 
                             //find suggested words
-                            String suggestionsResult = suggestions.suggestWords(dictionary, wordToCheck);
+                            List<String> suggestionsResult = suggestions.suggestWords(dictionary, wordToCheck);
 
 
-                            System.out.println("misspelled word: " + wordToCheck);
+                            System.out.println("\nmisspelled word: " + wordToCheck);
                             System.out.println("context: " + contextResult);
-                            System.out.println("Suggested words: ");
+                            System.out.println("Suggested words:" );
+                            for (String word: suggestionsResult) {
+                                System.out.println(word);
+                            }
                         }
                     }
                 } catch (FileNotFoundException e) {
