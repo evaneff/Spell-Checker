@@ -18,14 +18,16 @@ public class SurroundingContext {
         try {
             Scanner sc = new Scanner(file);
 
-            //has a problem starting at the beginning of a sentence or if there is a
-            // , or restarting after the end of the sentence
-            String regex = "((?:\\S+\\s+){0,3}" + word + "\\S*\\s*(?:\\S+\\s*){0,3})";
+            //works just fine on regex101.com
+
+            // line terminators definitely the problem
+
+            String regex = "(?:\\S+\\s+){0,3}" + word + "\\S*\\s*(?:\\S+\\s*){0,3}";
 
 
             Pattern pattern = Pattern.compile(regex);
 
-            result += sc.findInLine(pattern);
+            result = sc.findInLine(pattern);
 
 
         } catch (FileNotFoundException e) {
