@@ -15,11 +15,11 @@ public class SpellCheck {
     }
 
     public void findMisspelledWords(File dictionary, File fileToCheck) {
-        //find each word from fileToCheck in dictionary?!?!
-       // Scanner dict = null;
+        //find each word from fileToCheck in dictionary
+
         Scanner file = null;
         try {
-        //dict = new Scanner(dictionary);
+
         file = new Scanner(fileToCheck);
         } catch (FileNotFoundException e) {
         System.out.println("file not found");
@@ -28,8 +28,6 @@ public class SpellCheck {
         if (file != null) {
             while (file.hasNext()) {
                 try {
-                    Scanner dict = new Scanner(dictionary);
-
                     String wordToCheck = file.next();
 
                     //Remove "." and ","
@@ -44,6 +42,8 @@ public class SpellCheck {
 
                     //Check dictionary for lowercase word
                     wordToCheck = wordToCheck.toLowerCase();
+
+                    Scanner dict = new Scanner(dictionary);
 
                     while (dict.hasNext()) {
                         String check = dict.next();
