@@ -14,7 +14,7 @@ public class SurroundingContext {
     public String findContext(File file, String word) {
 
 
-        String result = "empty string";
+        String result = "";
         String regex = "(?:\\S+\\s+){0,3}" + word + "\\S*\\s*(?:\\S+\\s*){0,3}";
 
         Pattern pattern = Pattern.compile(regex);

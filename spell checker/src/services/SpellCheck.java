@@ -12,13 +12,12 @@ public class SpellCheck {
     public SpellCheck() {
     }
 
-    public List<String> findMisspelledWords(File dictionary, File fileToCheck) {
+    public List<String> findMisspelledWords(File dictionaryFile, File fileToCheck) {
         List<String> misspelledWords = new ArrayList<>();
 
         //find each word from fileToCheck in dictionary
         Scanner file = null;
         try {
-
             file = new Scanner(fileToCheck);
         } catch (FileNotFoundException e) {
             System.out.println("file not found");
@@ -28,35 +27,39 @@ public class SpellCheck {
             while (file.hasNext()) {
                 try {
                     String wordToCheck = file.next();
+                    boolean isCapitalized = false;
 
                     //Remove "." and ","
-                    if (wordToCheck.indexOf('.') >= 0 || wordToCheck.indexOf(',') >= 0) {
+                    if (wordToCheck.indexOf('.') >= 0 || wordToCheck.indexOf(',')  >= 0 || wordToCheck.indexOf('?') >= 0) {
                         wordToCheck = wordToCheck.substring(0, wordToCheck.length() - 1);
                     }
 
                     // Is the word a, A or I?
                     if (wordToCheck.equals("a") || wordToCheck.equals("A") || wordToCheck.equals("I")) {
-                        break;
+                        continue;
                     }
 
                     //Check dictionary for lowercase word
-                    wordToCheck = wordToCheck.toLowerCase();
+                    String lowerCase = wordToCheck.toLowerCase();
+                    if (!wordToCheck.equals(lowerCase)) {
+                        isCapitalized = true;
+                    }
 
-                    Scanner dict = new Scanner(dictionary);
+                    Scanner dictionary = new Scanner(dictionaryFile);
 
-                    while (dict.hasNext()) {
-                        String check = dict.next();
-                        if (wordToCheck.equals(check)) {
+                    while (dictionary.hasNext()) {
+                        String wordInDictionary = dictionary.next();
+                        if (lowerCase.equals(wordInDictionary)) {
                             break;
                         }
 
-                        if (!dict.hasNext()) {
+                        if (!dictionary.hasNext()) {
 
-                            // is it a proper noun?? or just misspelled capitalized word?
-
-                            //contractions??
-
-                            misspelledWords.add(wordToCheck);
+                            if (!isCapitalized) {
+                                misspelledWords.add(lowerCase);
+                            } else {
+                                misspelledWords.add(wordToCheck);
+                            }
                         }
                     }
                 } catch (FileNotFoundException e) {

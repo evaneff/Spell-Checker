@@ -15,13 +15,14 @@ public class SpellCheckTest {
         File fileToCheck = new File("src/file-to-check.txt");
         List<String> result = spellCheck.findMisspelledWords(dictionary, fileToCheck);
         List<String> expected = new ArrayList<>();
+        expected.add("dificult");
         expected.add("gooods");
-        expected.add("culteres");
-        expected.add("keep");
+        expected.add("importent");
+        expected.add("Eva");
+        expected.add("Lehi");
+        expected.add("Utah");
+        expected.add("keeep");
         expected.add("shorte");
-
-//        expected.add("");
-//        expected.add("");
 
         assertEquals(expected, result);
     }
