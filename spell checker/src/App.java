@@ -22,10 +22,8 @@ public class App {
 
         List<String> misspelledWords = checker.findMisspelledWords(dictionary, fileToCheck);
 
-        // check for proper nouns somehow...
-
         for (String word: misspelledWords) {
-            //still could be a misspelled capitalized word
+            //could be a misspelled capitalized word or proper noun
             System.out.println("\nmisspelled word: " + word);
 
             String contextResult = context.findContext(fileToCheck, word);

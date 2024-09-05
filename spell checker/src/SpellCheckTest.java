@@ -18,9 +18,6 @@ public class SpellCheckTest {
         expected.add("dificult");
         expected.add("gooods");
         expected.add("importent");
-        expected.add("Eva");
-        expected.add("Lehi");
-        expected.add("Utah");
         expected.add("keeep");
         expected.add("shorte");
 

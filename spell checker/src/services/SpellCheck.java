@@ -54,11 +54,9 @@ public class SpellCheck {
                         }
 
                         if (!dictionary.hasNext()) {
-
+                            // if lowercase is not in dictionary, I'm assuming it's a proper noun
                             if (!isCapitalized) {
                                 misspelledWords.add(lowerCase);
-                            } else {
-                                misspelledWords.add(wordToCheck);
                             }
                         }
                     }
